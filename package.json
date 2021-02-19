@@ -6,6 +6,9 @@
   "repository": "Cloudonaut-com/JavaScriptSDK",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.12.3",
