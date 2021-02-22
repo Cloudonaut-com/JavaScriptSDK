@@ -26,7 +26,7 @@ export default [
       exports: "named",
       sourcemap: true,
     },
-  },
+  }/*,
 // ESM and CJS
   {
     input,
@@ -45,5 +45,5 @@ export default [
         sourcemap: true,
       },
     ],
-  },
+  },*/
 ];
