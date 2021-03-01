@@ -10,7 +10,8 @@ export default class AuthService extends Service {
     super(api);
   }
 
-  Anonymous() {
+  Anonymous(token) {
+    this.api.player.providerUID = token || this.api.player.providerUID;
     const request = new AnonymousAuthRequestFull(
       this.api.appID,
       this.api.appSecret,
