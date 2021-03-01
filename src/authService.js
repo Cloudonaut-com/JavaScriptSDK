@@ -19,6 +19,7 @@ export default class AuthService extends Service {
     return this.ApiCall(request).then((data) => {
       if (data.success) {
         this.api.player.playerID = data.player.playerID;
+        this.api.player.providerUID = data.player.providerUID;
         this.api.player.playerSecret = data.player.playerSecret;
         this.api.player.displayName = data.player.displayName;
         this.api.player.displayNameExtra = data.player.displayNameExtra;
@@ -37,6 +38,7 @@ export default class AuthService extends Service {
     return this.ApiCall(request).then((data) => {
       if (data.success) {
         this.api.player.playerID = data.player.playerID;
+        this.api.player.providerUID = data.player.providerUID;
         this.api.player.playerSecret = data.player.playerSecret;
         this.api.player.displayName = data.player.displayName;
         this.api.player.displayNameExtra = data.player.displayNameExtra;
@@ -55,6 +57,7 @@ export default class AuthService extends Service {
     return this.ApiCall(request).then((data) => {
       if (data.success) {
         this.api.player.playerID = data.player.playerID;
+        this.api.player.providerUID = data.player.providerUID;
         this.api.player.playerSecret = data.player.playerSecret;
         this.api.player.displayName = data.player.displayName;
         this.api.player.displayNameExtra = data.player.displayNameExtra;
