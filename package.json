@@ -1,6 +1,6 @@
 {
   "name": "@cloudonaut/javascriptsdk",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Cloudonaut Javascript sdk",
   "license": "Apache License 2.0",
   "repository": "Cloudonaut-com/JavaScriptSDK",
