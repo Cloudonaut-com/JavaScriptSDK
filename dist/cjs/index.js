@@ -276,12 +276,10 @@ class AuthService extends Service {
 }
 
 class LeaderboardService extends Service {
-  constructor(api, obj, paging) {
+  constructor(api) {
     super(api);
-    obj = obj || {};
-    paging = paging || {};
-    this.data = new Leaderboard(obj);
-    this.paging = new Paging(paging);
+    this.settings = new Leaderboard({});
+    this.paging = new Paging({});
   }
 
   ListScores(paging) {
@@ -292,7 +290,7 @@ class LeaderboardService extends Service {
       this.api.appSecret,
       0,
       0,
-      this.data,
+      this.settings,
       paging
     );
     return this.ApiCall(request);
@@ -306,7 +304,7 @@ class LeaderboardService extends Service {
       this.api.appSecret,
       this.api.player.playerID,
       this.api.character.characterID,
-      this.data,
+      this.settings,
       paging
     );
     return this.ApiCall(request);
@@ -322,7 +320,7 @@ class LeaderboardService extends Service {
       this.api.appSecret,
       playerID,
       characterID,
-      this.data,
+      this.settings,
       paging
     );
     return this.ApiCall(request);
@@ -332,7 +330,7 @@ class LeaderboardService extends Service {
     const request = new CountScoresRequest(
       this.api.appID,
       this.api.appSecret,
-      this.data
+      this.settings
     );
     return this.ApiCall(request);
   }
@@ -344,7 +342,7 @@ class LeaderboardService extends Service {
       this.api.appID,
       this.api.appSecret,
       this.api.player,
-      this.data,
+      this.settings,
       paging
     );
     return this.ApiCall(request);
@@ -355,7 +353,7 @@ class LeaderboardService extends Service {
       this.api.appID,
       this.api.appSecret,
       this.api.player,
-      this.data
+      this.settings
     );
     return this.ApiCall(request);
   }
@@ -366,7 +364,7 @@ class LeaderboardService extends Service {
       this.api.appSecret,
       this.api.player.playerID,
       this.api.character.characterID,
-      this.data
+      this.settings
     );
     return this.ApiCall(request);
   }
@@ -379,7 +377,7 @@ class LeaderboardService extends Service {
       this.api.appSecret,
       playerID,
       characterID,
-      this.data
+      this.settings
     );
     return this.ApiCall(request);
   }
@@ -394,7 +392,7 @@ class LeaderboardService extends Service {
       this.api.appSecret,
       this.api.player,
       this.api.character.characterID,
-      this.data,
+      this.settings,
       score
     );
     return this.ApiCall(request);
@@ -650,10 +648,9 @@ class CountCharactersRequest {
   }
 
 class CharacterService extends Service {
-  constructor(api, paging) {
+  constructor(api) {
     super(api);
-    paging = paging || {};
-    this.paging = new Paging(paging);
+    this.paging = new Paging({});
   }
 
   AddCharacter(character) {
@@ -1194,14 +1191,14 @@ class API {
     return new FriendService(this);
   }
 
-  Leaderboard(obj, paging)
+  Leaderboard()
   {
-    return new LeaderboardService(this, obj, paging);
+    return new LeaderboardService(this);
   }
 
-  Character(paging)
+  Character()
   {
-    return new CharacterService(this, paging);
+    return new CharacterService(this);
   }
 
   PlayerProfile()
