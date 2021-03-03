@@ -9,10 +9,9 @@ import {
 import { Character } from "./objects/character";
 import Service from "./service";
 export default class CharacterService extends Service {
-  constructor(api, paging) {
+  constructor(api) {
     super(api);
-    paging = paging || {};
-    this.paging = new Paging(paging);
+    this.paging = new Paging({});
   }
 
   AddCharacter(character) {

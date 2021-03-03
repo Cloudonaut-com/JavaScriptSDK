@@ -11,12 +11,10 @@ import { Paging } from "./objects/paging";
 import Service from "./service";
 
 export default class LeaderboardService extends Service {
-  constructor(api, obj, paging) {
+  constructor(api) {
     super(api);
-    obj = obj || {};
-    paging = paging || {};
-    this.data = new Leaderboard(obj);
-    this.paging = new Paging(paging);
+    this.settings = new Leaderboard({});
+    this.paging = new Paging({});
   }
 
   ListScores(paging) {
@@ -27,7 +25,7 @@ export default class LeaderboardService extends Service {
       this.api.appSecret,
       0,
       0,
-      this.data,
+      this.settings,
       paging
     );
     return this.ApiCall(request);
@@ -41,7 +39,7 @@ export default class LeaderboardService extends Service {
       this.api.appSecret,
       this.api.player.playerID,
       this.api.character.characterID,
-      this.data,
+      this.settings,
       paging
     );
     return this.ApiCall(request);
@@ -57,7 +55,7 @@ export default class LeaderboardService extends Service {
       this.api.appSecret,
       playerID,
       characterID,
-      this.data,
+      this.settings,
       paging
     );
     return this.ApiCall(request);
@@ -67,7 +65,7 @@ export default class LeaderboardService extends Service {
     const request = new CountScoresRequest(
       this.api.appID,
       this.api.appSecret,
-      this.data
+      this.settings
     );
     return this.ApiCall(request);
   }
@@ -79,7 +77,7 @@ export default class LeaderboardService extends Service {
       this.api.appID,
       this.api.appSecret,
       this.api.player,
-      this.data,
+      this.settings,
       paging
     );
     return this.ApiCall(request);
@@ -90,7 +88,7 @@ export default class LeaderboardService extends Service {
       this.api.appID,
       this.api.appSecret,
       this.api.player,
-      this.data
+      this.settings
     );
     return this.ApiCall(request);
   }
@@ -101,7 +99,7 @@ export default class LeaderboardService extends Service {
       this.api.appSecret,
       this.api.player.playerID,
       this.api.character.characterID,
-      this.data
+      this.settings
     );
     return this.ApiCall(request);
   }
@@ -114,7 +112,7 @@ export default class LeaderboardService extends Service {
       this.api.appSecret,
       playerID,
       characterID,
-      this.data
+      this.settings
     );
     return this.ApiCall(request);
   }
@@ -129,7 +127,7 @@ export default class LeaderboardService extends Service {
       this.api.appSecret,
       this.api.player,
       this.api.character.characterID,
-      this.data,
+      this.settings,
       score
     );
     return this.ApiCall(request);

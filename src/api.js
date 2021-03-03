@@ -33,14 +33,14 @@ export default class API {
     return new FriendService(this);
   }
 
-  Leaderboard(obj, paging)
+  Leaderboard()
   {
-    return new LeaderboardService(this, obj, paging);
+    return new LeaderboardService(this);
   }
 
-  Character(paging)
+  Character()
   {
-    return new CharacterService(this, paging);
+    return new CharacterService(this);
   }
 
   PlayerProfile()
