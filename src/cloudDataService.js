@@ -163,6 +163,9 @@ export default class CloudDataService extends Service {
     playerID = playerID || 0;
     characterID = characterID || 0;
     dataKey = dataKey || "";
+    if (playerID === 0) {
+      return Promise.reject("Provide a player ID");
+    }
     if (dataKey === "") {
       return Promise.reject("Provide a key");
     }
@@ -178,6 +181,9 @@ export default class CloudDataService extends Service {
   GetPlayerDataOfPlayer(dataKey, playerID) {
     playerID = playerID || 0;
     dataKey = dataKey || "";
+    if (playerID === 0) {
+      return Promise.reject("Provide a player ID");
+    }
     if (dataKey === "") {
       return Promise.reject("Provide a key");
     }

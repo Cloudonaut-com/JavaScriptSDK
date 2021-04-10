@@ -15,7 +15,7 @@ export default class FriendService  extends Service{
     super(api);
     this.paging = new Paging(paging);
   }
-
+  
   AddFriend(friendID) {
     friendID = parseInt(friendID) || null;
     if (friendID === null) {
@@ -70,7 +70,7 @@ export default class FriendService  extends Service{
     return this.ApiCall(request);
   }
 
-  Count() {
+  CountFriends() {
     const request = new CountFriendsRequest(
       this.api.appID,
       this.api.appSecret,

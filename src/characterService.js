@@ -13,7 +13,7 @@ export default class CharacterService extends Service {
     super(api);
     this.paging = new Paging({});
   }
-
+  
   AddCharacter(character) {
     character = character || {};
     if (!(character instanceof Character)) {
@@ -30,7 +30,7 @@ export default class CharacterService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   UpdateCharacter(character) {
     character = character || {};
     if (!(character instanceof Character)) {
@@ -44,7 +44,7 @@ export default class CharacterService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   GetCharacter(characterID) {
     characterID = characterID || this.api.character.characterID;
     const request = new GetCharacterRequest(
@@ -55,7 +55,7 @@ export default class CharacterService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   SetCharacter(characterID) {
     characterID = characterID || 0;
     if (characterID == 0)
@@ -83,7 +83,7 @@ export default class CharacterService extends Service {
       return data;
     });
   }
-
+  
   GetCharacterOfPlayer(playerID, characterID) {
     playerID = playerID || this.api.player.playerID;
     characterID = characterID || this.api.character.characterID;
@@ -95,7 +95,7 @@ export default class CharacterService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   ListCharacters(paging) {
     paging = paging || {};
     paging = paging instanceof Paging ? paging : this.paging;
@@ -107,7 +107,7 @@ export default class CharacterService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   CountCharacters() {
     const request = new CountCharactersRequest(
       this.api.appID,
@@ -129,7 +129,7 @@ export default class CharacterService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   CountCharactersOfPlayer(playerID) {
     playerID = playerID || this.api.player.playerID;
     const request = new CountCharactersRequest(

@@ -13,7 +13,7 @@ export default class PlayerProfileService extends Service {
     super(api);
     this.paging = new Paging(paging);
   }
-
+  
   UpdateProfile() {
     const request = new UpdatePlayerProfileRequest(
       this.api.appID,
@@ -22,7 +22,7 @@ export default class PlayerProfileService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   GetProfile() {
     const request = new GetPlayerProfileRequest(
       this.api.appID,
@@ -31,7 +31,7 @@ export default class PlayerProfileService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   GetProfileOfPlayer(playerID) {
     playerID = playerID || this.api.player.playerID;
     const request = new GetPlayerProfileRequest(
@@ -41,7 +41,7 @@ export default class PlayerProfileService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   ListProfilesOfPlayers(playerList, paging) {
     if (Array.isArray(playerList)) {
       paging = paging || {};

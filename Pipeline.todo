@@ -1,2 +1,4 @@
 # Pipeline
+☐ npm run build
+☐ Push to git
 ☐ command np to create npm package

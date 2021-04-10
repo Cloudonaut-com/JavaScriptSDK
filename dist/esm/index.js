@@ -465,7 +465,7 @@ class FriendService  extends Service{
     super(api);
     this.paging = new Paging(paging);
   }
-
+  
   AddFriend(friendID) {
     friendID = parseInt(friendID) || null;
     if (friendID === null) {
@@ -520,7 +520,7 @@ class FriendService  extends Service{
     return this.ApiCall(request);
   }
 
-  Count() {
+  CountFriends() {
     const request = new CountFriendsRequest(
       this.api.appID,
       this.api.appSecret,
@@ -648,7 +648,7 @@ class CharacterService extends Service {
     super(api);
     this.paging = new Paging({});
   }
-
+  
   AddCharacter(character) {
     character = character || {};
     if (!(character instanceof Character)) {
@@ -665,7 +665,7 @@ class CharacterService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   UpdateCharacter(character) {
     character = character || {};
     if (!(character instanceof Character)) {
@@ -679,7 +679,7 @@ class CharacterService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   GetCharacter(characterID) {
     characterID = characterID || this.api.character.characterID;
     const request = new GetCharacterRequest(
@@ -690,7 +690,7 @@ class CharacterService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   SetCharacter(characterID) {
     characterID = characterID || 0;
     if (characterID == 0)
@@ -718,7 +718,7 @@ class CharacterService extends Service {
       return data;
     });
   }
-
+  
   GetCharacterOfPlayer(playerID, characterID) {
     playerID = playerID || this.api.player.playerID;
     characterID = characterID || this.api.character.characterID;
@@ -730,7 +730,7 @@ class CharacterService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   ListCharacters(paging) {
     paging = paging || {};
     paging = paging instanceof Paging ? paging : this.paging;
@@ -742,7 +742,7 @@ class CharacterService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   CountCharacters() {
     const request = new CountCharactersRequest(
       this.api.appID,
@@ -764,7 +764,7 @@ class CharacterService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   CountCharactersOfPlayer(playerID) {
     playerID = playerID || this.api.player.playerID;
     const request = new CountCharactersRequest(
@@ -834,7 +834,7 @@ class PlayerProfileService extends Service {
     super(api);
     this.paging = new Paging(paging);
   }
-
+  
   UpdateProfile() {
     const request = new UpdatePlayerProfileRequest(
       this.api.appID,
@@ -843,7 +843,7 @@ class PlayerProfileService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   GetProfile() {
     const request = new GetPlayerProfileRequest(
       this.api.appID,
@@ -852,7 +852,7 @@ class PlayerProfileService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   GetProfileOfPlayer(playerID) {
     playerID = playerID || this.api.player.playerID;
     const request = new GetPlayerProfileRequest(
@@ -862,7 +862,7 @@ class PlayerProfileService extends Service {
     );
     return this.ApiCall(request);
   }
-
+  
   ListProfilesOfPlayers(playerList, paging) {
     if (Array.isArray(playerList)) {
       paging = paging || {};
@@ -1134,6 +1134,9 @@ class CloudDataService extends Service {
     playerID = playerID || 0;
     characterID = characterID || 0;
     dataKey = dataKey || "";
+    if (playerID === 0) {
+      return Promise.reject("Provide a player ID");
+    }
     if (dataKey === "") {
       return Promise.reject("Provide a key");
     }
@@ -1149,6 +1152,9 @@ class CloudDataService extends Service {
   GetPlayerDataOfPlayer(dataKey, playerID) {
     playerID = playerID || 0;
     dataKey = dataKey || "";
+    if (playerID === 0) {
+      return Promise.reject("Provide a player ID");
+    }
     if (dataKey === "") {
       return Promise.reject("Provide a key");
     }
