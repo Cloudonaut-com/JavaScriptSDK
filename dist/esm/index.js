@@ -879,7 +879,7 @@ class PlayerProfileService extends Service {
     }
   }
 
-  Search(search, paging) {
+  SearchProfiles(search, paging) {
     paging = paging || {};
     paging = paging instanceof Paging ? paging : this.paging;
     search = search || "";
