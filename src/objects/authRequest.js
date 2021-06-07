@@ -40,4 +40,29 @@ class FirebaseAuthRequestFull extends AuthRequestFull
     }
 }
 
-export { AnonymousAuthRequestFull, FacebookAuthRequestFull, FirebaseAuthRequestFull };
+
+class PortalTokenAuthRequestFull
+{
+    constructor(appID, appSecret, token, playerID){
+        this.appID = appID;
+        this.appSecret = appSecret;
+        this.controller = "Auth";
+        this.action ="Authenticate";
+        this.playerID = playerID;
+        this.portalToken = token;
+    }
+}
+
+class GetPortalTokenRequest
+{
+    constructor(appID, appSecret, player){
+        this.appID = appID;
+        this.appSecret = appSecret;
+        this.controller = "Auth";
+        this.action ="GetPortalToken";
+        this.playerID = player.playerID;
+        this.playerSecret = player.playerSecret;
+    }
+}
+
+export { AnonymousAuthRequestFull, FacebookAuthRequestFull, FirebaseAuthRequestFull, PortalTokenAuthRequestFull, GetPortalTokenRequest };

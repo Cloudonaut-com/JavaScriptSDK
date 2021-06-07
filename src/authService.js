@@ -2,6 +2,8 @@ import {
   AnonymousAuthRequestFull,
   FacebookAuthRequestFull,
   FirebaseAuthRequestFull,
+  GetPortalTokenRequest,
+  PortalTokenAuthRequestFull,
 } from "./objects/authRequest";
 import Service from "./service";
 
@@ -65,5 +67,33 @@ export default class AuthService extends Service {
       }
       return data;
     });
+  }
+
+  WithPortalToken(playerID, token) {
+    const request = new PortalTokenAuthRequestFull(
+      this.api.appID,
+      this.api.appSecret,
+      token,
+      playerID
+    );
+    return this.ApiCall(request).then((data) => {
+      if (data.success) {
+        this.api.player.playerID = data.player.playerID;
+        this.api.player.providerUID = data.player.providerUID;
+        this.api.player.playerSecret = data.player.playerSecret;
+        this.api.player.displayName = data.player.displayName;
+        this.api.player.displayNameExtra = data.player.displayNameExtra;
+      }
+      return data;
+    });
+  }
+
+  GetPortalToken() {
+    const request = new GetPortalTokenRequest(
+      this.api.appID,
+      this.api.appSecret,
+      this.api.player
+    );
+    return this.ApiCall(request);
   }
 }

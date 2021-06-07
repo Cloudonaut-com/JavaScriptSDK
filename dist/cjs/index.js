@@ -187,6 +187,31 @@ class FirebaseAuthRequestFull extends AuthRequestFull
     }
 }
 
+
+class PortalTokenAuthRequestFull
+{
+    constructor(appID, appSecret, token, playerID){
+        this.appID = appID;
+        this.appSecret = appSecret;
+        this.controller = "Auth";
+        this.action ="Authenticate";
+        this.playerID = playerID;
+        this.portalToken = token;
+    }
+}
+
+class GetPortalTokenRequest
+{
+    constructor(appID, appSecret, player){
+        this.appID = appID;
+        this.appSecret = appSecret;
+        this.controller = "Auth";
+        this.action ="GetPortalToken";
+        this.playerID = player.playerID;
+        this.playerSecret = player.playerSecret;
+    }
+}
+
 class Service {
   constructor(api) {
     this.api = api;
@@ -272,6 +297,34 @@ class AuthService extends Service {
       }
       return data;
     });
+  }
+
+  WithPortalToken(playerID, token) {
+    const request = new PortalTokenAuthRequestFull(
+      this.api.appID,
+      this.api.appSecret,
+      token,
+      playerID
+    );
+    return this.ApiCall(request).then((data) => {
+      if (data.success) {
+        this.api.player.playerID = data.player.playerID;
+        this.api.player.providerUID = data.player.providerUID;
+        this.api.player.playerSecret = data.player.playerSecret;
+        this.api.player.displayName = data.player.displayName;
+        this.api.player.displayNameExtra = data.player.displayNameExtra;
+      }
+      return data;
+    });
+  }
+
+  GetPortalToken() {
+    const request = new GetPortalTokenRequest(
+      this.api.appID,
+      this.api.appSecret,
+      this.api.player
+    );
+    return this.ApiCall(request);
   }
 }
 
